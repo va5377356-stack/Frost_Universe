@@ -1,0 +1,29 @@
+{
+  "preset_id": "frost_universe_v1",
+  "version": "1.0",
+  "engine_compatibility": "Pax Universe v2.4+",
+  "campaign_title": "Frost Universe: От Золотого Века к Вечной Мерзлоте",
+  "world_name": "Frost Universe",
+  "world_type": "custom_campaign",
+  "difficulty": "Hard",
+  "estimated_playtime": "180-240 minutes",
+  "theme_tags": ["Выживание", "Моральный выбор", "Индустриализм", "Холод", "Политический коллапс"],
+  "author": "AI Game Design Suite",
+  "based_on": "Вселенная Frostpunk (11 bit studios)",
+  "license": "CC-BY-NC-SA",
+  "total_phases": 4,
+  "factions_initialized": 5,
+  "laws_total": 20,
+  "crisis_cards_total": 18,
+  "technologies_total": 35,
+  "buildings_total": 45,
+  "victory_conditions": [
+    "Any of 8 endings reached",
+    "Campaign completion: day 1800+"
+  ],
+  "defeat_conditions": [
+    "Population < 100",
+    "Heat output = 0 for > 100 consecutive days",
+    "Collapse Ending triggered"
+  ]
+}

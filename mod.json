@@ -1,0 +1,25 @@
+{
+  "name": "Frost Universe",
+  "id": "frost_universe_v1",
+  "version": "1.0.0",
+  "author": "AI Game Design Suite",
+  "description": "Кастомная кампания по вселенной Frostpunk для Pax Universe. 4 фазы, 5 фракций, 20 законов, 8 концовок.",
+  "game_version": "2.4+",
+  "type": "campaign",
+  "entry_point": "FrostUniverse/Config/campaign_config.json",
+  "files": [
+    "FrostUniverse/Config/campaign_config.json",
+    "FrostUniverse/Config/metadata.yaml",
+    "FrostUniverse/Phases/phase_1.json",
+    "FrostUniverse/Phases/phase_2.json",
+    "FrostUniverse/Phases/phase_3.json",
+    "FrostUniverse/Phases/phase_4.json",
+    "FrostUniverse/Localization/ru_RU.json",
+    "FrostUniverse/Localization/en_US.json",
+    "FrostUniverse/README.md",
+    "FrostUniverse/preview_image_info.txt"
+  ],
+  "tags": ["Выживание", "Холод", "Moral Choice", "Frostpunk", "Лор"],
+  "preview_image": "FrostUniverse/preview_image.png",
+  "license": "CC-BY-NC-SA"
+}
