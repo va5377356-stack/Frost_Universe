@@ -1,0 +1,230 @@
+{
+  "phase_id": 3,
+  "phase_name": "Frostpunk — Эпоха Выживания",
+  "period": "1900-1914",
+  "duration_days": 600,
+  "description": "Официальное признание нового мира. Температуры стабилизировались в диапазоне -40°C to -80°C. Люди адаптировались биологически и психологически. Нью-Лондон превратился из временного убежища в полноценный город-государство. Население выросло до 50,000+. Начинается фаза консолидации: политические группировки борются за контроль над городом.",
+  "climate": {
+    "average_temperature": "-60°C",
+    "storms": "раз в 2–3 дня",
+    "visibility": "Минимальная",
+    "terrain": "Вечная мерзлота"
+  },
+  "starting_population": 25000,
+  "key_mechanics": {
+    "political_council": {
+      "seats": 5,
+      "voting_requirement": "3/5",
+      "factions_in_council": ["Imperials", "Utopists", "Survivors", "Technocrats", "Wildcard"]
+    },
+    "star_shafts": {
+      "shaft_1": "Угольная — базовый ресурс",
+      "shaft_4": "Нефтяная — редкая, но мощная",
+      "shaft_7": "Древесная — переработка льда в древесину",
+      "shaft_13": "Экспериментальная — случайные открытия"
+    },
+    "sorrow_engine": {
+      "technology_id": "sorrow_engine_research",
+      "title": "Двигатель Печали (Sorrow Engine)",
+      "description": "Экспериментальная установка, использующая биоэнергию человеческого горя для генерирования тепла.",
+      "research_cost": 1000,
+      "heat_output": 100,
+      "death_requirement": "10 people/day"
+    }
+  },
+  "buildings": [
+    {
+      "building_id": "shaft_coal_1",
+      "name": "Шахта Звезды №1 (Угольная)",
+      "production": "+50 coal/sec",
+      "workers_required": 100,
+      "dangerous": true
+    },
+    {
+      "building_id": "shaft_oil_4",
+      "name": "Шахта Звезды №4 (Нефтяная)",
+      "production": "+20 oil/sec",
+      "workers_required": 50,
+      "dangerous": "EXTREME",
+      "research_required": "Oil extraction"
+    },
+    {
+      "building_id": "housing_elite_quarter",
+      "name": "Элитный квартал",
+      "capacity": 20,
+      "heat_requirement": 80,
+      "morale_bonus": 40,
+      "construction_cost": { "steel": 300, "wood": 100, "steam_cores": 5 }
+    },
+    {
+      "building_id": "housing_underdistrict",
+      "name": "Подземный район",
+      "capacity": 1000,
+      "heat_requirement": 10,
+      "morale_bonus": -40,
+      "death_rate_if_cold": "EXTREME (до 20/sec if heat < 5)",
+      "construction_cost": { "steel": 50 }
+    },
+    {
+      "building_id": "temple_eternal_winter",
+      "name": "Храм Вечной Зимы",
+      "capacity": 500,
+      "morale_bonus": 25,
+      "hidden_mechanic": "Каждый день случайно выбирает 1-3 человека для жертвоприношения"
+    },
+    {
+      "building_id": "sorrow_engine_core",
+      "name": "Ядро Двигателя Печали",
+      "heat_output": 100,
+      "death_requirement": "10 people/day",
+      "moral_consequence": "Использование этого здания автоматически закрывает Good Ending"
+    }
+  ],
+  "research_tree": {
+    "tier_1": [
+      { "name": "Автоматизированные шахты", "effect": "Роботы работают автономно, -30% рабочих", "cost": 300 },
+      { "name": "Глубокое бурение", "effect": "+40% для всех шахт", "cost": 300 },
+      { "name": "Переработка льда", "effect": "Превращает лёд в древесину", "cost": 300 },
+      { "name": "Креветки-фильтраторы", "effect": "Биоресурс для еды", "cost": 300 }
+    ],
+    "tier_2": [
+      { "name": "Твёрдый уголь", "effect": "+50% heat per coal", "cost": 600 },
+      { "name": "Нефтяной рефинилинг", "effect": "+100% efficiency", "cost": 600 },
+      { "name": "Клонирование микроорганизмов", "effect": "+80% food production", "cost": 600 },
+      { "name": "Искусственная гравитация", "effect": "Экспериментальная технология", "cost": 600 }
+    ],
+    "tier_3": [
+      { "name": "Двигатель Печали", "effect": "Требует 50 смертей в день, даёт Heat +100, открывает Dark Ending", "cost": 1000 },
+      { "name": "Межзвёздная навигация", "effect": "Подготовка к отправке первых кораблей", "cost": 1000 },
+      { "name": "Квантовая энергия", "effect": "Энергия из вакуума (теоретически)", "cost": 1000 }
+    ]
+  },
+  "laws": {
+    "politics": [
+      {
+        "law_id": "law_phase3_council_expanded_powers",
+        "title": "Расширить полномочия Совета",
+        "duration": "14 days",
+        "council_authority": 0.3,
+        "decision_speed": -0.2
+      },
+      {
+        "law_id": "law_phase3_council_dissolve",
+        "title": "Распустить Совет и вернуться к авторитаризму",
+        "duration": "Permanent",
+        "decision_speed": 0.5,
+        "opposition_penalty": -0.3
+      }
+    ],
+    "economy": [
+      {
+        "law_id": "law_phase3_extreme_mining",
+        "title": "Экстремальная добыча звёздных шахт",
+        "duration": "Permanent",
+        "production_bonus": 0.5,
+        "accident_rate": "+300%"
+      },
+      {
+        "law_id": "law_phase3_internalize_suffering",
+        "title": "Внутренние квоты страдания",
+        "duration": "Permanent",
+        "morale_penalty": -50,
+        "consequences": ["Утописты покидают Совет", "Открывается путь к Dark Ending"]
+      }
+    ]
+  },
+  "crisis_cards": [
+    {
+      "crisis_card_id": "crisis_3_1_other_cities_fail",
+      "title": "СИГНАЛ ИЗ SHAFT-4: МОЛЧАНИЕ",
+      "description": "Из другого города-Генератора перестают приходить сигналы.",
+      "trigger_conditions": ["phase 3 active", "day 100-200"],
+      "duration": "7 days",
+      "morale_penalty": -40,
+      "hope_penalty": -30,
+      "weight": 9
+    },
+    {
+      "crisis_card_id": "crisis_3_2_resource_depletion",
+      "title": "ИСТОЩЕНИЕ ШАХТ",
+      "description": "Главные шахты начинают давать осечки.",
+      "trigger_conditions": ["phase 3", "after 500+ days"],
+      "duration": "30 days",
+      "production_penalty": { "coal": -0.4, "oil": -0.6 },
+      "weight": 8
+    },
+    {
+      "crisis_card_id": "crisis_3_3_cult_takeover_attempt",
+      "title": "КУЛЬТ ПРЕДПРИНИМАЕТ ПОПЫТКУ ПЕРЕВОРОТА",
+      "description": "Культ Вечной Зимы пытается захватить власть над городом.",
+      "trigger_conditions": ["Cult reputation > 70", "Morale < 50", "random 20%"],
+      "duration": "7 days",
+      "coup_progress": "+10% per day",
+      "weight": 6
+    },
+    {
+      "crisis_card_id": "crisis_3_4_automatron_rebellion",
+      "title": "ВОССТАНИЕ АВТОМАТОНОВ",
+      "description": "Паровые автоматоны начинают восставать против людей.",
+      "trigger_conditions": ["automatron population > 1000", "random 15%"],
+      "duration": "10 days",
+      "production_penalty": -0.7,
+      "weight": 5
+    },
+    {
+      "crisis_card_id": "crisis_3_5_truth_revealed",
+      "title": "ПРАВДА О ПЕЧАЛЬНОМ ДВИГАТЕЛЕ РАСКРЫТА",
+      "description": "Если игрок секретно использовал Sorrow Engine, люди узнают правду.",
+      "trigger_conditions": ["Sorrow Engine active for > 500 days", "random reveal event"],
+      "duration": "PERMANENT",
+      "morale_crash": -70,
+      "hope_crash": -60,
+      "weight": 9
+    }
+  ],
+  "factions": [
+    {
+      "faction_id": "faction_imperial_authority_p3",
+      "faction_name": "Британская Имперская Администрация (Эпоха консолидации)",
+      "seats_in_council": 1,
+      "leader": "Генерал Беджин",
+      "perks": ["+30% Government Efficiency", "+20% Military Production", "Emergency Decree"]
+    },
+    {
+      "faction_id": "faction_technocrats_p3",
+      "faction_name": "Технократы (Архитекторы будущего)",
+      "seats_in_council": 1,
+      "leader": "Доктор Герман Фёллер",
+      "perks": ["+60% Research Speed", "+40% Building Efficiency", "Scientific Breakthrough"]
+    },
+    {
+      "faction_id": "faction_survivors_p3",
+      "faction_name": "Выживальщики (Хозяева морозного мира)",
+      "seats_in_council": 1,
+      "leader": "Генерал Морган",
+      "perks": ["+50% Military Production", "+30% Resource Hoarding", "Martial Law"]
+    },
+    {
+      "faction_id": "faction_utopists_p3",
+      "faction_name": "Утописты (Голос совести)",
+      "seats_in_council": 1,
+      "leader": "Эдвард Кларк",
+      "perks": ["+50% Morale from humanitarian decisions", "Cultural Renaissance", "Democratic Uprising"]
+    },
+    {
+      "faction_id": "faction_cult_p3",
+      "faction_name": "Культ Вечной Зимы (Религиозное государство)",
+      "seats_in_council": 1,
+      "leader": "Верховный Пророк Иван",
+      "perks": ["+70% Morale from religious decrees", "Sacrificial Boost", "Divine Mandate"]
+    }
+  ],
+  "phase_transition": {
+    "trigger": "day 1000+",
+    "endings": {
+      "golden_path": "Город процветает через справедливость и инновации",
+      "grey_path": "Город пережил, но ценой жестокости",
+      "dark_path": "Культ или Выживальщики контролируют город"
+    }
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "phase_id": 2,
+  "phase_name": "Хроники Нью-Лондона — Последняя осень",
+  "period": "1888-1900",
+  "duration_days": 400,
+  "description": "Мир окончательно вступил в эпоху Великой Зимы. Температура планеты упала на 10–15°C. Мировые державы рушатся под натиском холода. Урожаи гибнут. Страны распадаются. Британская империя реализует последний шанс: эвакуацию людей в подготовленные Генераторные комплексы. Главный из них — Нью-Лондон (New London) на месте арктического поселения. Игрок теперь не просто администратор, а Начальник Города (City Overseer), на чьих плечах лежит ответственность за выживание 20,000+ человек в условиях адского холода.",
+  "climate": {
+    "average_temperature": "-20°C ... -40°C",
+    "natural_resources": "Очень ограничены (уголь, древесина из редких тепличных культур)",
+    "visibility": "Плохая (постоянные метели)",
+    "precipitation": "Снег каждый день, штормы 2–3 раза в неделю"
+  },
+  "resource_conversion": {
+    "efficiency": 0.7,
+    "starting_resources": {
+      "coal": 550,
+      "wood": 310,
+      "steel": 190,
+      "steam_cores": 3,
+      "food_rations": 330
+    },
+    "new_resources": {
+      "oil": 0,
+      "automatron_chassis": 1
+    }
+  },
+  "starting_population": 18500,
+  "player_role": "Начальник Города (City Overseer)",
+  "heat_network_system": {
+    "central_generator_heat_output": 100,
+    "heat_distribution": "Каждая линия передаёт тепло в соседние районы (-5 heat per distance)",
+    "residential_requirements": {
+      "luxury_housing": 60,
+      "regular_housing": 40,
+      "barracks": 25
+    },
+    "mechanic": "Если Heat < Required, жители теряют здоровье: Heat 20-40: Здоровье -2/sec; Heat < 20: Здоровье -5/sec, Смерти -1/sec; Heat = 0: Все жители замёрзнут за 10 минут"
+  },
+  "society_metrics": {
+    "generator_heat": { "value": 100, "range": "0-200" },
+    "morale": { "value": 40, "range": "0-100" }
+  },
+  "buildings": [
+    {
+      "building_id": "coal_generator_main",
+      "name": "Главный Угольный Генератор",
+      "description": "Сердце Нью-Лондона. Сжигает уголь и генерирует тепло для всего города.",
+      "heat_output": 100,
+      "coal_consumption": 10,
+      "workers_required": 30,
+      "overload_available": true,
+      "overload_heat_bonus": 0.5,
+      "overload_coal_penalty": 0.8,
+      "critical_building": true,
+      "buildable": false
+    },
+    {
+      "building_id": "insulated_housing_luxe",
+      "name": "Люксовые Утеплённые Апартаменты",
+      "description": "Качественное жильё с двойной изоляцией.",
+      "capacity": 50,
+      "heat_requirement": 60,
+      "morale_bonus": 15,
+      "construction_cost": { "steel": 100, "wood": 30 }
+    },
+    {
+      "building_id": "regular_housing_insulated",
+      "name": "Обычное Утеплённое Жилище",
+      "description": "Стандартные апартаменты для рабочих средней квалификации.",
+      "capacity": 100,
+      "heat_requirement": 40,
+      "morale_bonus": 0,
+      "construction_cost": { "steel": 60, "wood": 20 }
+    },
+    {
+      "building_id": "frozen_barracks_phase2",
+      "name": "Ледяные Казармы",
+      "description": "Минимальное жилище. Люди едва выживают в условиях постоянного холода.",
+      "capacity": 300,
+      "heat_requirement": 25,
+      "morale_bonus": -20,
+      "death_rate_if_cold": "HIGH (2/sec if heat < 15)",
+      "construction_cost": { "steel": 30, "wood": 10 }
+    },
+    {
+      "building_id": "automatron_scout_team",
+      "name": "Отряд автоматонов-разведчиков",
+      "description": "Паровые механизмы, которые не мёрзнут. Исследуют окружающие земли за ресурсами.",
+      "expedition_range": 12,
+      "resource_discovery": ["Coal", "Wood", "Steam Cores"],
+      "maintenance_cost": "5 steam cores per 10 expeditions",
+      "construction_cost": { "steel": 80, "steam_cores": 5 }
+    },
+    {
+      "building_id": "deep_coal_pit",
+      "name": "Глубокая Угольная Шахта",
+      "description": "Опасная шахта с человеческим трудом.",
+      "production": "+40 coal/sec",
+      "workers_required": 80,
+      "accidents_chance": "5% per 1000 seconds",
+      "construction_cost": { "steel": 100 }
+    },
+    {
+      "building_id": "algae_bioreactor",
+      "name": "Биореактор Водорослей",
+      "description": "Экспериментальная система выращивания водорослей под искусственным светом и теплом.",
+      "production": "+10 food/sec",
+      "coal_consumption": 3,
+      "workers_required": 10,
+      "research_required": "Микробиология",
+      "construction_cost": { "steel": 150, "wood": 50 }
+    }
+  ],
+  "research_tree": {
+    "tier_1": [
+      { "name": "Тепловая Изоляция", "effect": "+30% efficiency для жилых домов, -20% heat required", "cost": 200 },
+      { "name": "Паровые Автоматоны", "effect": "Разблокирует автоматизированные разведчики", "cost": 200 },
+      { "name": "Консервирование пищи", "effect": "+25% shelf life для food rations", "cost": 200 },
+      { "name": "Ледяная навигация", "effect": "+20% speed для экспедиций в условиях холода", "cost": 200 }
+    ],
+    "tier_2": [
+      { "name": "Перегрузка Генератора", "effect": "Разблокирует режим Overload (+50% heat, -80% fuel efficiency)", "cost": 500 },
+      { "name": "Микробиология", "effect": "Разблокирует биореакторы водорослей", "cost": 500 },
+      { "name": "Ампутационная хирургия", "effect": "Лечение обморожений через ампутацию + протезирование", "cost": 500 },
+      { "name": "Детская рабочая сила", "effect": "Разблокирует рабочие квоты для детей (спорно)", "cost": 500 }
+    ],
+    "tier_3": [
+      { "name": "Улучшенный Генератор Класс 2", "effect": "Heat output +50%, coal consumption -10%", "cost": 800 },
+      { "name": "Нефтяные эксперименты", "effect": "Первые попытки добычи нефти из-подо льда", "cost": 800 },
+      { "name": "Прионизм", "effect": "Зарождение религиозного культа (влияет на общество)", "cost": 800 }
+    ]
+  },
+  "laws": {
+    "path_of_order": [
+      {
+        "law_id": "law_phase2_mandatory_work",
+        "title": "Обязательный труд для выживания",
+        "description": "Все без исключения граждане (кроме детей и инвалидов) должны работать.",
+        "duration": "Permanent",
+        "production_bonus": 0.3,
+        "morale_penalty": -50
+      },
+      {
+        "law_id": "law_phase2_child_labor",
+        "title": "Детские трудовые квоты",
+        "description": "Дети 10+ лет работают в шахтах и фабриках.",
+        "requirements": "Mandatory Work Decree",
+        "duration": "Permanent",
+        "production_bonus": 0.15,
+        "morale_penalty": -40,
+        "hope_penalty": -60
+      },
+      {
+        "law_id": "law_phase2_order_through_violence",
+        "title": "Порядок через насилие",
+        "description": "Создание полицейского государства.",
+        "duration": "Permanent",
+        "lawfulness_bonus": 40,
+        "morale_penalty": -70
+      },
+      {
+        "law_id": "law_phase2_rationing_harsh",
+        "title": "Суровое нормирование пищи",
+        "description": "Рационы пищи сокращены в два раза.",
+        "duration": "30 days",
+        "food_consumption": -0.5,
+        "morale_penalty": -80,
+        "death_rate_starvation": "+2 per day"
+      }
+    ],
+    "path_of_faith": [
+      {
+        "law_id": "law_phase2_faith_doctrine",
+        "title": "Церковь спасения (Вера в холод)",
+        "description": "Зарождается новый культ, верящий, что холод — это испытание, посланное Богом.",
+        "duration": "Permanent",
+        "morale_bonus": 20,
+        "hope_bonus": 15
+      },
+      {
+        "law_id": "law_phase2_ritual_sacrifices",
+        "title": "Ритуальные жертвоприношения Богам Холода",
+        "description": "Культ требует жертв для умиротворения 'Богов Льда'.",
+        "requirements": "Church of Salvation decree",
+        "duration": "Permanent",
+        "morale_bonus": 10,
+        "hidden_death_rate": "+5 per day"
+      }
+    ]
+  },
+  "crisis_cards": [
+    {
+      "crisis_card_id": "crisis_2_1_blizzard_catastrophe",
+      "title": "УЖАСНЫЙ БУРАН",
+      "description": "Самый сильный буран за всю историю.",
+      "trigger_conditions": ["phase 2 active", "random 15%"],
+      "duration": "7 days",
+      "heat_loss": "+50% in all districts",
+      "visibility_penalty": -0.8,
+      "expedition_blocked": true,
+      "weight": 8
+    },
+    {
+      "crisis_card_id": "crisis_2_2_generator_breakdown",
+      "title": "ПОЛОМКА ГЛАВНОГО ГЕНЕРАТОРА",
+      "description": "Главный генератор взрывается частично.",
+      "trigger_conditions": ["Overload active for > 1000 sec", "random 10%"],
+      "duration": "15 days",
+      "heat_output": -0.7,
+      "repair_cost": { "steel": 200, "worker_hours": 500, "steam_cores": 5 },
+      "weight": 7
+    },
+    {
+      "crisis_card_id": "crisis_2_3_food_shortage",
+      "title": "ГОЛОД",
+      "description": "Продовольственный кризис.",
+      "trigger_conditions": ["food production < 15/sec", "random 20%"],
+      "duration": "10 days",
+      "food_production": -0.8,
+      "morale_penalty": -60,
+      "weight": 9
+    },
+    {
+      "crisis_card_id": "crisis_2_4_epidemic_fever",
+      "title": "ГОРЯЧКА (Переохлаждение + Инфекция)",
+      "description": "Из-за стресса и холода люди болеют необычной болезнью.",
+      "trigger_conditions": ["morale < 30", "population > 10000"],
+      "duration": "14 days",
+      "infection_rate": "+100 people per day",
+      "weight": 8
+    },
+    {
+      "crisis_card_id": "crisis_2_5_uprising_rebellion",
+      "title": "ВОССТАНИЕ",
+      "description": "Люди восстали.",
+      "trigger_conditions": ["Morale < 15 for 3+ days", "Discontent > 85"],
+      "duration": "7 days",
+      "production_penalty": -0.6,
+      "weight": 6
+    }
+  ],
+  "factions": [
+    {
+      "faction_id": "faction_imperial_authority_p2",
+      "faction_name": "Британская Имперская Администрация (Выжившие)",
+      "role": "PLAYER_FACTION",
+      "starting_reputation": 60,
+      "new_perks": ["Imperial Decree", "Emergency Broadcast"]
+    },
+    {
+      "faction_id": "faction_utopists_p2",
+      "faction_name": "Утописты (Сопротивление)",
+      "leader": "Эдвард Кларк",
+      "new_perks": ["+20% Morale при гуманитарных законах", "Центр Искусства и Культуры"]
+    },
+    {
+      "faction_id": "faction_survivors_p2",
+      "faction_name": "Выживальщики (Железная рука)",
+      "leader": "Джеймс Морган",
+      "new_perks": ["+40% Производство военных зданий", "Secret Police Headquarters", "Martial Law"]
+    },
+    {
+      "faction_id": "faction_technocrats_p2",
+      "faction_name": "Технократы (Инженеры Выживания)",
+      "leader": "Доктор Герман Фёллер",
+      "new_perks": ["+50% Скорость исследований", "Research Laboratory"]
+    },
+    {
+      "faction_id": "faction_cult_born",
+      "faction_name": "Культ Холода (НОВАЯ ФРАКЦИЯ)",
+      "role": "OPPOSITION / CHAOS",
+      "leader": "Пророк Иван",
+      "starting_reputation": 0,
+      "special_mechanic": "Скрытое влияние — культ растёт в фоне"
+    }
+  ],
+  "phase_transition": {
+    "trigger": "day 1000+",
+    "event": "Окончательная адаптация человечества к Великой Зиме",
+    "player_choice": {
+      "path_of_order": "Нью-Лондон — дом авторитарного государства",
+      "path_of_faith": "Холод — это испытание небес",
+      "path_of_humanism": "Мы выжили через взаимопомощь и справедливость"
+    }
+  }
+}
